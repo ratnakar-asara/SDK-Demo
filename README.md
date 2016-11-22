@@ -44,13 +44,29 @@ The goal is to run [helloblockchain.js](https://github.com/ratnakar-asara/Node-S
 Once Deploy/Invoke and Query are successful, we should see the below messages:
 
 ```
-Successfully deployed chaincode: request={"fcn":"init","args":["a","100","b","200"],"certificatePath":"/certs/blockchain-cert.pem","chaincodePath":"chaincode_example02"}, response={"uuid":"2d6ad8d6-1390-4c60-a01b-f4c301175eb7","chaincodeID":"9be0a0ed3f1788e8728c8911c747d2f6d0e205fa63422dc598d498fe709b9b8d","result":"TODO: get actual results; waited 120 seconds and assumed deploy was successful"}
+Chaincode ID : 639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6
 
-Successfully submitted chaincode invoke transaction: request={"chaincodeID":"9be0a0ed3f1788e8728c8911c747d2f6d0e205fa63422dc598d498fe709b9b8d","fcn":"invoke","args":["a","b","1"]}, response={"uuid":"f9a902d2-44d8-4b68-b43d-419470ba73ae"}
+Successfully deployed chaincode: request={"fcn":"init","args":["a","100","b","200"],"chaincodePath":"chaincode","certificatePath":"/certs/peer/cert.pem"}, response={"uuid":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6"}
 
-Successfully completed chaincode invoke transaction: request={"chaincodeID":"9be0a0ed3f1788e8728c8911c747d2f6d0e205fa63422dc598d498fe709b9b8d","fcn":"invoke","args":["a","b","1"]}, response={"result":"waited 20 seconds and assumed invoke was successful"}
+Successfully submitted chaincode invoke transaction: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"invoke","args":["a","b","10"]}, response={"uuid":"6d64ca09-ff4e-46b0-a26b-9894257d24ba"}
 
-Successfully queried  chaincode function: request={"chaincodeID":"9be0a0ed3f1788e8728c8911c747d2f6d0e205fa63422dc598d498fe709b9b8d","fcn":"query","args":["a"]}, value=99
+Successfully completed chaincode invoke transaction: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"invoke","args":["a","b","10"]}, response={"result":"Tx 6d64ca09-ff4e-46b0-a26b-9894257d24ba complete"}
+
+Custom event received, payload: "Event Counter is 1"
+
+Successfully queried  chaincode function: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"query","args":["a"]}, value=90
+```
+
+Once deploy is successful, each run performs a transaction, receives a custom event and queries for entity **a** value
+
+```
+Successfully submitted chaincode invoke transaction: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"invoke","args":["a","b","10"]}, response={"uuid":"9c2b6e7a-9158-4041-8a70-4d569d0d578f"}
+
+Successfully completed chaincode invoke transaction: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"invoke","args":["a","b","10"]}, response={"result":"Tx 9c2b6e7a-9158-4041-8a70-4d569d0d578f complete"}
+
+Custom event received, payload: "Event Counter is 2"
+
+Successfully queried  chaincode function: request={"chaincodeID":"639a1c876515c8b74f744fcc23a9cba2ecc9df91cce542923b8f701bfe4bf4b6","fcn":"query","args":["a"]}, value=80
 ```
 
 ***
@@ -71,7 +87,7 @@ Failed to query chaincode, function: request={"chaincodeID":"9be0a0ed3f1788e8728
 
 ```
 
-  increase deploy wait time
-  ex: `chain.setDeployWaitTime(100);`
+  increase deploy wait time in config.json by changing the value of the property **deployWaitTime**,
+  ex: `"deployWaitTime":"100",`
 
 
